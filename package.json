@@ -10,5 +10,10 @@
   },
   "devDependencies": {
     "vite": "^6.1.0"
+  },
+  "dependencies": {
+    "did-jwt": "^8.0.8",
+    "did-jwt-vc": "^4.0.6",
+    "qrcode": "^1.5.4"
   }
 }
