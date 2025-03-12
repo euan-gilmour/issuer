@@ -101,6 +101,8 @@ function setupQr() {
   const localIp = ipAddressField.value;
 
   const qrPayload = {
+    issuer: vcIssuer.did,
+    type: "UniversityDegreeCredential",
     webSocketsUrl: `ws://${localIp}:8081/`,
   };
 
