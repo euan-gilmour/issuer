@@ -73,10 +73,12 @@ function createVc(userDid) {
 function setupWebSocket(vc) {
   const ws = new WebSocket("ws://localhost:8081/");
 
+  createVcButton.addEventListener("click", () => {
+    ws.close();
+  });
+
   window.addEventListener("beforeunload", () => {
     ws.close();
-
-    peerConnection.close();
   });
 
   ws.onopen = () => {
@@ -93,6 +95,8 @@ function setupWebSocket(vc) {
         const message = JSON.stringify({ type: "VC", vc: vc });
         ws.send(message);
         ws.close();
+        clearQr();
+        alert("Credential Sent");
     }
   };
 }
@@ -116,3 +120,8 @@ function setupQr() {
 createVcButton.addEventListener("click", () => {
   createVc(userDidField.value);
 });
+
+function clearQr() {
+  const ctx = qrCanvas.getContext("2d");
+  ctx.clearRect(0, 0, qrCanvas.width, qrCanvas.height);
+}
